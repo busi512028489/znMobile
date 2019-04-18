@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module>
+	<public>
+		<component>
+			<interface>nc.itf.approvalweb.Approvalweb</interface>
+			<implementation>nc.impl.approvalweb.Approvalwebimpl</implementation>
+			<extension class="nc.uap.ws.deploy.OxbWSExtensionProcessor">
+				<wsdl>/nc/itf/approvalweb/Approvalweb.wsdl</wsdl>
+				<address>/nc.itf.approvalweb.Approvalweb</address>
+			</extension>
+		</component>
+	</public>
+	<private>
+	</private>
+</module>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+jaxb:version="2.0"
+xmlns:ns0="http://approvalweb.itf.nc/Approvalweb"
+targetNamespace="http://approvalweb.itf.nc/Approvalweb">
+
+<jaxws:bindings>
+	<jaxws:package name="nc.itf.approvalweb"/>
+</jaxws:bindings>
+
+<wsdl:types>
+   <xsd:schema xmlns:ns="http://approvalweb.itf.nc/Approvalweb"
+			attributeFormDefault="unqualified"
+			elementFormDefault="unqualified"
+			targetNamespace="http://approvalweb.itf.nc/Approvalweb" jaxb:version="2.0">
+	<xsd:annotation>
+    	<xsd:appinfo>
+   			<jaxb:schemaBindings>
+    			<jaxb:package name="nc.itf.approvalweb"/>
+    		</jaxb:schemaBindings>
+   		</xsd:appinfo>
+   	</xsd:annotation>
+	<xsd:element name="getCode">
+         <xsd:complexType>
+            <xsd:sequence>
+				<xsd:element name="string"  minOccurs="0" nillable="true" type="xsd:string"/>
+             </xsd:sequence>  
+         </xsd:complexType>
+     </xsd:element>
+	<xsd:element name="getCodeResponse">
+         <xsd:complexType>
+            <xsd:sequence>
+				<xsd:element name="return"  minOccurs="0" nillable="true" type="xsd:string"/>
+             </xsd:sequence>  
+         </xsd:complexType>
+     </xsd:element>
+   </xsd:schema>
+</wsdl:types>
+    <wsdl:message name="getCodeRequest">
+        <wsdl:part name="parameters"  element="ns0:getCode"/>
+    </wsdl:message>
+    <wsdl:message name="getCodeResponse">
+        <wsdl:part name="parameters"  element="ns0:getCodeResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="ApprovalwebPortType">
+        <wsdl:operation name="getCode">
+            <wsdl:input message="ns0:getCodeRequest" wsaw:Action="urn:getCode"/>
+            <wsdl:output message="ns0:getCodeResponse" wsaw:Action="urn:getCodeResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    
+    <wsdl:binding name="ApprovalwebSOAP11Binding" type="ns0:ApprovalwebPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getCode">
+            <soap:operation soapAction="urn:getCode" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="Approvalweb">
+        <wsdl:port name="ApprovalwebSOAP11port_http" binding="ns0:ApprovalwebSOAP11Binding">
+            <soap:address location="http://localhost/uapws/service/Approvalweb"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
